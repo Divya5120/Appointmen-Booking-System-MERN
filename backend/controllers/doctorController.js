@@ -1,4 +1,4 @@
-import doctorModel from "../models/doctorModel";
+import doctorModel from "../models/doctorModel.js";
 
 const changeAvailability = async (requestAnimationFrame, res) => {
   try {
@@ -14,4 +14,14 @@ const changeAvailability = async (requestAnimationFrame, res) => {
   }
 };
 
-export { changeAvailability };
+const doctorList = async (req, res) => {
+  try {
+    const doctors = await doctorModel.find({}).select(["-password", "-email"]);
+    res.json({ success: true, doctors });
+  } catch (err) {
+    console.log(err);
+    res.json({ success: false, message: err.message });
+  }
+};
+
+export { changeAvailability, doctorList };
