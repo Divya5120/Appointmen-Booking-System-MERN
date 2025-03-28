@@ -99,4 +99,16 @@ const loginAdmin = async (req, res) => {
   }
 };
 
-export { addDoctor, loginAdmin };
+//api controller for all doctors
+
+const allDoctors = async (req, res) => {
+  try {
+    const doctors = await doctorModel.find({}).select("-password");
+    res.json({ success: true, doctors });
+  } catch (err) {
+    console.log(err);
+    res.json({ success: false, message: err.message });
+  }
+};
+
+export { addDoctor, loginAdmin, allDoctors };
