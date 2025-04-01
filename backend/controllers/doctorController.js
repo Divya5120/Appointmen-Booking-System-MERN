@@ -24,4 +24,14 @@ const doctorList = async (req, res) => {
   }
 };
 
+//API FOR DOCTOR login
+
+const loginDoctor= async (req, res) => {
+  try{}
+  catch (err) {
+    console.log(err);
+    res.json({ success: false, message: err.message });
+  }
+}
+
 export { changeAvailability, doctorList };

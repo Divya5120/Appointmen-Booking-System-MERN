@@ -25,10 +25,13 @@ const Appointment = () => {
   const navigate = useNavigate();
   const fetchDocInfo = async () => {
     const docInfo = doctors.find((doc) => doc._id === docId);
+    console.log(docInfo, "docInfo");
     setDocInfo(docInfo);
   };
 
   const getAvailableSlots = async () => {
+    if (!docInfo) return; // Add this check
+
     setDocSlots([]);
     //getting current date
     let today = new Date();
@@ -108,6 +111,7 @@ const Appointment = () => {
         { docId, slotDate, slotTime },
         { headers: { token } }
       );
+      console.log(data);
 
       if (data.success) {
         toast.success(data.message);
